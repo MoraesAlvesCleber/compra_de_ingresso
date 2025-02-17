@@ -5,28 +5,39 @@ let inferior = 400;
 
 
 function comprar() {
-    //recuperar valor do números
+    //recuperar valor do formulário
     let produto = document.getElementById('tipo-ingresso').value;
     let qtd = parseInt(document.getElementById('qtd').value);
-   
+
 
     let valorPista = document.getElementById('qtd-pista');
     let valorSuperior = document.getElementById('qtd-superior');
     let valorInferior = document.getElementById('qtd-inferior');
 
+    let avisoQuantidade = document.querySelector('.aviso1');
+
+    let avisoExistente = document.querySelector(".aviso");
+    if (avisoExistente) {
+        avisoExistente.remove();
+    }
+
+
     if (produto === 'pista' && pista > 0 && qtd <= pista) {
         pista -= qtd;
         valorPista.innerHTML = pista;
 
-    }  else if (produto === 'superior' && superior > 0 && qtd <= superior) {
+    } else if (produto === 'superior' && superior > 0 && qtd <= superior) {
         superior -= qtd;
         valorSuperior.innerHTML = superior;
+
 
     } else if (produto === 'inferior' && inferior > 0 && qtd <= inferior) {
         inferior -= qtd;
         valorInferior.innerHTML = inferior;
 
-    }  else {
-        alert('Erro de quantidade');
+    } else {
+        avisoQuantidade.innerHTML += `<span class="aviso">Erro de quantidade!</span>`;
     }
 }
+
+
